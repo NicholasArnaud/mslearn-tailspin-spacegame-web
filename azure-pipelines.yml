@@ -12,11 +12,11 @@ pool:
 variables:
   buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
-  dotnetSdkVersion: '$(dotnetSdkVersion)'
+  dotnetSdkVersion: '7.x'
 
 steps:
   - task: UseDotNet@2
-    displayName: 'Use .NET SDK 7.x'
+    displayName: 'Use .NET SDK $(dotnetSdkVersion)'
     inputs:
       packageType: sdk
       version: '$(dotnetSdkVersion)'
@@ -41,7 +41,7 @@ steps:
     inputs:
       command: 'restore'
       projects: '**/*.csproj'
-      
+
   - task: DotNetCoreCLI@2
     displayName: 'Build the project - $(buildConfiguration)'
     inputs:
